@@ -1,0 +1,110 @@
+#include <iostream>
+using namespace std;
+class Node
+{
+public:
+    int data;
+    Node *left;
+    Node *right;
+    Node(int val)
+    {
+        data = val;
+        left = NULL;
+        right = NULL;
+    }
+};
+bool searchBST(Node *root, int key)
+{
+    if (root == NULL)
+    {
+        return false;
+    }
+    if (root->data == key)
+    {
+        return true;
+    }
+
+    else if (root->data > key)
+    {
+        return searchBST(root->left, key);
+    }
+    else
+    {
+        return searchBST(root->right, key);
+    }
+    return false;
+}
+int findMin(Node *root)
+{
+    if (root == NULL)
+    {
+        return -1;
+    }
+    while (root->left != NULL)
+    {
+        root = root->left;
+    }
+    return root->data;
+}
+int findMax(Node *root)
+{
+    while (root->right != NULL)
+    {
+        root = root->right;
+    }
+    return root->data;
+}
+void inorder(Node *root)
+{
+    if (root == NULL)
+    {
+        return;
+    }
+    inorder(root->left);
+    cout << root->data << " ";
+    inorder(root->right);
+}
+int height(Node *root)
+{
+    if (root == NULL)
+    {
+        return -1;
+    }
+    return max(height(root->left), height(root->right) + 1);
+}
+int main()
+{
+    // // cout<<"Top easy questation BST"<<endl;
+    // 1. What is a Binary Search Tree (BST)?
+    // A binary search tree (BST) is a binary tree where :
+    // The left subtree of the node contsians only nodes with valus smaller than the node's valus
+    // the right subtree of the nodes constains only nodes with values greater than the nodes's values
+    // the left and right subtree must also be bst
+
+    // 2. What is the difference between a Binary Tree and a Binary Search Tree?
+    // Binary Tree -> Any tree at most 2 childeren per node , no speacific order o(n) search completxity
+    // BSt ->follow specific ordering rules
+    // left<root<right
+    // o(log n)->average cases
+    // // 3. What are the properties of a BST?
+    // left subtree < rootnode <right subtree nodes
+    // inorder traversal gives sprted value
+    // efficiet search minsertaion and deletion o(logn) in a balenced bst
+    // 4. How do you search for an element in a BST?
+    // Node* root = new Node(10);
+    // root->left = new Node(5);
+    // root->right = new Node(20);
+
+    // cout << (searchBST(root, 5) ? "Found" : "Not Found") << endl;
+    // cout << (searchBST(root, 15) ? "Found" : "Not Found") << endl;
+    // 5. What is the time complexity of searching in a BST?
+    // best -> o(log n)-> bst is balenced
+    // worst -> o( n)-> bst is skewed
+    // 6. How do you find the minimum value in a BST?
+    // 7. How do you find the maximum value in a BST?
+    // 8. What is an inorder traversal of a BST?
+    // 9. What does an inorder traversal of a BST return?
+    // A sorted list of elemsnt (because bst store values in increasing order).
+    // 10. What is the height of a BST, and how is it calculated?
+    // Time Complexity: O(N) (for unbalanced trees)
+}
